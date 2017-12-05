@@ -10,6 +10,8 @@ import ufc.pdpmt.model.Point;
 import ufc.pdpmt.model.Trajectory;
 
 public class PointJDBCDAO implements PointDAO {
+	
+	private static int idNext = 1;
 
     @Override
     public List<Point> find() {
@@ -57,7 +59,7 @@ public class PointJDBCDAO implements PointDAO {
         trajetoria.setDate(rs.getDate("data"));
         trajetoria.setHour(rs.getString("hora"));
 
-        Point point = new Point(trajetoria);
+        Point point = new Point(trajetoria, idNext++);
 
         return point;
 

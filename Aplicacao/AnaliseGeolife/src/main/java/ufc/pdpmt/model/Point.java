@@ -4,9 +4,6 @@ import java.util.BitSet;
 
 public class Point {
     public final static int RUIDO = -1;
-    
-	private static int sequenceID;
-    private int id;
     private BitSet idBitSet;
 	private Trajectory trajectory;
     private Status status;
@@ -14,9 +11,7 @@ public class Point {
     private Integer idCluster;
     private boolean core;
 
-
-    public Point(Trajectory trajectory) {
-    	this.id = sequenceID++;
+    public Point(Trajectory trajectory, int id) {
     	idBitSet = new BitSet(8);
         idBitSet.set(id);
 
@@ -24,15 +19,8 @@ public class Point {
         this.idCluster = RUIDO;
         this.core = false;
         this.trajectory = trajectory;
+
     }
-
-    public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public BitSet getIdBitSet() {
 		return idBitSet;
@@ -74,13 +62,8 @@ public class Point {
 		this.core = core;
 	}
 
-	public static int getSequenceID() {
-		return sequenceID;
-	}
-
 	public String toCSV() {
         String resultado =
-                this.id + ";" +
                 this.trajectory.getIdPerson() + ";" +
                 this.trajectory.getLine() + ";" +
                 this.trajectory.getAltitude() + ";" +
